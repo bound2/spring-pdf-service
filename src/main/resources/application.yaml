@@ -1,3 +1,6 @@
 spring:
   mustache:
     suffix: .html
+bound2:
+  web-driver:
+    concurrent-driver-count: 2
