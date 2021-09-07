@@ -20,7 +20,7 @@ public class TemplateService {
         this.compiler = compiler;
     }
 
-    public String getBase64Template(String template, Map<String, Object> params) {
+    public String getBase64Html(String template, Map<String, Object> params) {
         try {
             var resource = getClass().getClassLoader().getResource("templates/%s.html".formatted(template));
             var path = Path.of(resource.toURI());
