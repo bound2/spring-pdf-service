@@ -1,4 +1,4 @@
-package com.bound2.template;
+package com.bound2.document.template;
 
 import com.samskivert.mustache.Mustache;
 import org.apache.tomcat.util.codec.binary.Base64;
