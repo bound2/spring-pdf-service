@@ -1,14 +1,13 @@
 package com.bound2.document.template;
 
 import com.samskivert.mustache.Mustache;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Base64;
 import java.util.Map;
 
 @Service
@@ -26,11 +25,10 @@ public class TemplateService {
             var path = Path.of(resource.toURI());
             var html = Files.readString(path, StandardCharsets.UTF_8);
 
-            var outputStream = new ByteArrayOutputStream();
-            var writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+            var writer = new StringWriter();
             compiler.compile(html).execute(params, writer);
 
-            return Base64.encodeBase64String(outputStream.toByteArray());
+            return Base64.getEncoder().encodeToString(writer.toString().getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
