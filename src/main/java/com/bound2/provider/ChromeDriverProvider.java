@@ -4,7 +4,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.concurrent.Semaphore;
 
 @Component
@@ -20,12 +19,12 @@ public class ChromeDriverProvider implements WebDriverProvider<ChromeDriver>{
     public ChromeDriver acquire() {
         try {
             webDriverSemaphore.acquire();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless", "--disable-gpu");
+            return new ChromeDriver(options);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless", "--disable-gpu");
-        return new ChromeDriver(options);
     }
 
     @Override
