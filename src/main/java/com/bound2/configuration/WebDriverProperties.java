@@ -5,4 +5,5 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 
 @ConfigurationProperties(prefix = "bound2.web-driver")
 @ConstructorBinding
-public record WebDriverProperties(Integer concurrentDriverCount){}
+public record WebDriverProperties(Integer concurrentDriverCount) {
+}
