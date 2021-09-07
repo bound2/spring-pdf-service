@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.util.Base64;
 import java.util.Map;
 
+import static java.util.Objects.requireNonNull;
+
 @Service
 public class TemplateService {
 
@@ -22,7 +24,7 @@ public class TemplateService {
     public String getBase64Html(String template, Map<String, Object> params) {
         try {
             var resource = getClass().getClassLoader().getResource("templates/%s.html".formatted(template));
-            var path = Path.of(resource.toURI());
+            var path = Path.of(requireNonNull(resource).toURI());
             var html = Files.readString(path, StandardCharsets.UTF_8);
 
             var writer = new StringWriter();
