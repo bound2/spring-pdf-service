@@ -1,7 +1,6 @@
 package com.bound2.document.pdf;
 
 import com.bound2.provider.WebDriverProvider;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.print.PrintOptions;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +9,9 @@ import java.util.Base64;
 @Service
 public class PdfService {
 
-    private final WebDriverProvider<ChromeDriver> webDriverProvider;
+    private final WebDriverProvider webDriverProvider;
 
-    public PdfService(WebDriverProvider<ChromeDriver> webDriverProvider) {
+    public PdfService(WebDriverProvider webDriverProvider) {
         this.webDriverProvider = webDriverProvider;
     }
 

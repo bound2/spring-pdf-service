@@ -2,12 +2,13 @@ package com.bound2.provider;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Semaphore;
 
 @Component
-public class ChromeDriverProvider implements WebDriverProvider<ChromeDriver>{
+public class ChromeDriverProvider implements WebDriverProvider {
 
     private final Semaphore webDriverSemaphore;
 
@@ -16,7 +17,7 @@ public class ChromeDriverProvider implements WebDriverProvider<ChromeDriver>{
     }
 
     @Override
-    public ChromeDriver acquire() {
+    public RemoteWebDriver acquire() {
         try {
             webDriverSemaphore.acquire();
             ChromeOptions options = new ChromeOptions();
@@ -28,7 +29,7 @@ public class ChromeDriverProvider implements WebDriverProvider<ChromeDriver>{
     }
 
     @Override
-    public void release(ChromeDriver driver) {
+    public void release(RemoteWebDriver driver) {
         try {
             if (driver != null) {
                 driver.close();

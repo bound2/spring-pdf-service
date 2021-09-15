@@ -2,9 +2,9 @@ package com.bound2.provider;
 
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public interface WebDriverProvider<T extends RemoteWebDriver> {
+public interface WebDriverProvider {
 
-    T acquire();
+    RemoteWebDriver acquire();
 
-    void release(T driver);
+    void release(RemoteWebDriver driver);
 }
